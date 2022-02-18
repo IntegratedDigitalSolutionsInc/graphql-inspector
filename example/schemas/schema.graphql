@@ -14,3 +14,7 @@ type Query {
   post: Post!
   posts: [Post!]
 }
+
+type Model @model {
+  createdAt: AWSDateTime!
+}
