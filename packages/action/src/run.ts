@@ -180,6 +180,8 @@ export async function run() {
   core.setOutput('changes', `${changes.length || 0}`);
   core.info(`Changes: ${changes.length || 0}`);
 
+  core.info(github.context.payload.pull_request?.labels);
+
   const hasApprovedBreakingChangeLabel = github.context.payload.pull_request
       ? github.context.payload.pull_request.labels?.some((label: any) => label.name === approveLabel)
       : false;
@@ -350,4 +352,3 @@ function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean
 
   return true;
 }
-
