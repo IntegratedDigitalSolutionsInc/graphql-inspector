@@ -118,6 +118,8 @@ export function produceSchema(source: Source) {
             update
             delete
           }
+
+          directive @custom(request: String, response: String) on OBJECT 
         `),
       ]
     });
