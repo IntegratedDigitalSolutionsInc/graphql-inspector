@@ -23,17 +23,13 @@ export function produceSchema(source: Source) {
           scalar BigInt
           scalar Double
 
-          directive @aws_subscribe(
-            mutations: [String!]!
-          ) on FIELD_DEFINITION
+          directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
 
           directive @deprecated(
             reason: String
           ) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION | ENUM | ENUM_VALUE
 
-          directive @aws_auth(
-            cognito_groups: [String!]!
-          ) on FIELD_DEFINITION
+          directive @aws_auth(cognito_groups: [String!]!) on FIELD_DEFINITION
           directive @aws_api_key on FIELD_DEFINITION | OBJECT
           directive @aws_iam on FIELD_DEFINITION | OBJECT
           directive @aws_oidc on FIELD_DEFINITION | OBJECT
@@ -42,7 +38,10 @@ export function produceSchema(source: Source) {
           ) on FIELD_DEFINITION | OBJECT
           directive @aws_lambda on FIELD_DEFINITION | OBJECT
 
-          directive @function(name: String!, region: String) repeatable on FIELD_DEFINITION
+          directive @function(
+            name: String!
+            region: String
+          ) repeatable on FIELD_DEFINITION
 
           directive @model(
             queries: ModelQueryMap
@@ -75,7 +74,11 @@ export function produceSchema(source: Source) {
             updatedAt: String
           }
 
-          directive @key(name: String, fields: [String!]!, queryField: String) repeatable on OBJECT
+          directive @key(
+            name: String
+            fields: [String!]!
+            queryField: String
+          ) repeatable on OBJECT
 
           directive @auth(rules: [AuthRule!]!) on OBJECT | FIELD_DEFINITION
           input AuthRule {
@@ -119,9 +122,12 @@ export function produceSchema(source: Source) {
             delete
           }
 
-          directive @custom(request: String, response: String) on OBJECT 
+          directive @custom(
+            request: String
+            response: String
+          ) on FIELD_DEFINITION
         `),
-      ]
+      ],
     });
   } catch (e) {
     throw new Error(`Failed to parse "${source.name}": ${e.message}`);
